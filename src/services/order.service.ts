@@ -1,4 +1,5 @@
 import orderModel from '../models/order.model';
+import productModel from '../models/product.model';
 import { Order } from '../interfaces/order';
 
 const getAll = async (): Promise<Order[]> => {
@@ -6,6 +7,8 @@ const getAll = async (): Promise<Order[]> => {
   return orders;
 };
 
-export default {
-  getAll,
+const addOrder = async (userId: number, productsIds: number[]) => {
+  const orderId = await orderModel.addOrder(userId);
+  productsIds.forEach((e) => productModel.insert(orderId, e)); 
 };
+export default { getAll, addOrder };

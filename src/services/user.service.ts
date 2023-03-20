@@ -17,6 +17,14 @@ const create = async (user: User): Promise<string> => {
   return token;
 };
 
+const selectId = async (user: string) => {
+  const [[id]] = await userModel.selectId(user);
+  console.log(id);
+
+  return id;
+};
+
 export default {
   create,
+  selectId,
 };
